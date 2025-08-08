@@ -2,6 +2,7 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TrendingUp, Route, Users, Truck } from "lucide-react";
 import { SeoHead } from "@/components/Seo";
+import MapboxMap from "@/components/MapboxMap";
 
 function KpiCard({ title, value, icon: Icon }: { title: string; value: string; icon: React.ElementType }) {
   return (
@@ -12,36 +13,6 @@ function KpiCard({ title, value, icon: Icon }: { title: string; value: string; i
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-semibold tracking-tight">{value}</div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function LiveRouteMapMock() {
-  return (
-    <Card className="bg-card/80 border-border/60 shadow-subtle">
-      <CardHeader className="pb-2"><span className="text-sm text-muted-foreground">Live Route Map</span></CardHeader>
-      <CardContent>
-        <div className="relative h-80 rounded-lg overflow-hidden bg-secondary">
-          <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-          {/* vehicle pings */}
-          <div className="absolute left-1/3 top-1/4">
-            <span className="block h-2 w-2 rounded-full bg-primary shadow-primary animate-pulse" />
-          </div>
-          <div className="absolute left-2/3 top-1/2">
-            <span className="block h-2 w-2 rounded-full bg-primary shadow-primary animate-pulse" />
-          </div>
-          <div className="absolute left-1/5 top-2/3">
-            <span className="block h-2 w-2 rounded-full bg-primary shadow-primary animate-pulse" />
-          </div>
-        </div>
       </CardContent>
     </Card>
   );
@@ -92,7 +63,7 @@ export default function Dashboard() {
         {/* Main content split */}
         <section className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4 animate-fade-in">
           <div className="lg:col-span-2">
-            <LiveRouteMapMock />
+            <MapboxMap />
           </div>
           <div className="lg:col-span-1">
             <RecentActivity />
