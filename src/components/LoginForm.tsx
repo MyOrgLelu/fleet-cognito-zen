@@ -1,24 +1,33 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import fleetLogo from "@/assets/fleet-logo.png";
+import { SeoHead } from "@/components/Seo";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Login logic would go here
     console.log("Login attempt:", { email, password });
+    navigate("/dashboard");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-surface relative overflow-hidden">
+      <SeoHead
+        title="Fleet Management Login | Secure Access"
+        description="Log in to the fleet management platform to access routes, vehicles, employees, and performance analytics."
+        canonical={window.location.href}
+      />
       {/* Background glow effect */}
       <div className="absolute inset-0 bg-gradient-glow"></div>
       
@@ -125,7 +134,6 @@ export default function LoginForm() {
               </Button>
             </form>
 
-            {/* Additional Links */}
             <div className="text-center pt-4">
               <p className="text-sm text-muted-foreground">
                 Need access?{" "}
@@ -133,6 +141,14 @@ export default function LoginForm() {
                   Contact administrator
                 </button>
               </p>
+              <div className="mt-3">
+                <button
+                  onClick={() => navigate('/dashboard')}
+                  className="text-sm text-primary hover:text-primary-hover underline-offset-4 hover:underline"
+                >
+                  View dashboard mockup
+                </button>
+              </div>
             </div>
           </CardContent>
         </Card>
